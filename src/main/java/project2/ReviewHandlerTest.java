@@ -16,6 +16,9 @@ class ReviewHandlerTest {
 	}
 	// Your File Path to the Data folder !
 	private String path = "/Users/Power/eclipse-workspace/NEW/Data/";  
+	/**
+	 * 
+	 */
 	@Test
 	void testLoadReviews() {
 		ReviewHandler object1 = new ReviewHandler();
@@ -54,7 +57,9 @@ class ReviewHandlerTest {
 		ReviewHandler object12 = new ReviewHandler();
 		object12.loadReviews(path+"Movie-reviews/pos", 2);
 	}
-
+	/**
+	 * 
+	 */
 	@Test
 	void testReadReview() {
 		ReviewHandler object1 = new ReviewHandler();
@@ -100,7 +105,9 @@ class ReviewHandlerTest {
 			e.printStackTrace();
 		}
 	}
-
+	/**
+	 * 
+	 */
 	@Test
 	void testClassifyReview() {
 		
@@ -186,7 +193,9 @@ class ReviewHandlerTest {
 		ReviewHandler object18 = new ReviewHandler();
 		object18.classifyReview(object626);
 	}
-
+	/**
+	 * 
+	 */
 	@Test
 	void testDeleteReview() {
 		
@@ -196,7 +205,9 @@ class ReviewHandlerTest {
 		
 		object1.deleteReview(review_id);
 	}
-
+	/**
+	 * 
+	 */
 	@Test
 	void testSaveDB() {
 		
@@ -209,7 +220,9 @@ class ReviewHandlerTest {
 			e.printStackTrace();
 		}
 	}
-
+	/**
+	 * 
+	 */
 	@Test
 	void testLoadDB() {
 		
@@ -222,7 +235,9 @@ class ReviewHandlerTest {
 			e.printStackTrace();
 		}
 	}
-
+	/**
+	 * 
+	 */
 	@Test
 	void testSearchById() {
 		int review_id = 0 ;
@@ -231,7 +246,9 @@ class ReviewHandlerTest {
 		
 		object1.searchById(review_id);
 	}
-
+	/**
+	 * 
+	 */
 	@Test
 	void testSearchBySubstring() {
 		String search_review1 = "recovery";//positive review
