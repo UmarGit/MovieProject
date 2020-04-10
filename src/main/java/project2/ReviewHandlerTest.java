@@ -1,26 +1,109 @@
+/**
+ * 
+ */
 package main.java.project2;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
 
-import main.java.project2.ReviewScore;
+import org.junit.Test;
 
-class ReviewHandlerTest {
+/**
+ * @Date : Apr 10-2020
+ * @author iqbal
+ * @version Java SE 1.8
+ * @version JDK 1.8
+ * JUnit 4
+ * 100% results checked all 8/8 methods on JUnit 4 and JUnit 5
+ */
 
-	@BeforeAll
-	static void setUpBeforeClass() throws Exception {
-	}
-	// Your File Path to the Data folder !
-	private String path = "/Users/Power/eclipse-workspace/NEW/Data/";  
+
+public class ReviewHandlerTest {
+	
 	/**
+	 * path	: The path to the Data folder where these 
+	 * 		  files and folders exists { positive-words.txt , negative-words.txt , pos(folder) , neg(folder) }
 	 * 
+	 * Above File Path will be change/Modify According to personal Computer
+	 */
+	private String path = "/Users/Power/eclipse-workspace/NEW/Data/"; 
+	
+	/**
+	 * @throws java.lang.Exception
+	 */
+	
+	
+	/**
+	*JUnit 4 : 
+	*		@BeforeClass
+	*		@AfterClass
+	*JUnit 5 :
+	*		@BeforeAll
+	*		@AfterAll
+	* @BeforeClass / @BeforeAll Method Execute one time before All Test Cases
+	* @AfterClass / @AfterAll Method Execute one time After All Test Cases 
+	*/
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		ReviewHandlerTest rht=new ReviewHandlerTest();
+		rht.memoryClear();
+	}
+	
+	@AfterClass
+	public static void TestingEnd(){
+		System.out.println("\nAll Test Cases Testing Completed Successfully Done ...");
+	}
+	private void memoryClear() {
+		ReviewHandlerTest rht=new ReviewHandlerTest();
+		System.out.println("\nClear Memory\n");
+		
+	}
+	/**
+	*JUnit 4 : 
+	*		@Before
+	*		@After
+	*JUnit 5 :
+	*		@BeforeEach
+	*		@AfterEach
+	* @Before / @BeforeEach Method Execute Before Each Test Case
+	* @After / @AfterEach Method Execute After Each Test Case
+	*/
+	@Before
+	public void beforeTest(){
+		System.out.println("\nCase Test : ");
+	}
+	
+	@After
+	public void afterTest(){
+		System.out.println("Case Tested Complete\n");
+	}
+
+	
+
+	
+	/**
+	 * Test method for {@link main.java.project2.ReviewHandler#loadReviews(java.lang.String, int)}.
+	 * 
+	 * 
+	 * Ppth is Your Positive-Words File Path to the Data folder !
+	 * this path must be modify according to the personal Computer
+	 *
+	 */
+		
+	/**
+	 * @param Ppath+"positive-words.txt" file path of the positive words
+	 * @param 0,1,2 The real class of the review (0 = Negative, 1 = Positive 2 = Unknown).
 	 */
 	@Test
-	void testLoadReviews() {
+	public void testLoadReviews() {
 		ReviewHandler object1 = new ReviewHandler();
 		object1.loadReviews(path+"positive-words.txt", 0);
 		
@@ -57,11 +140,19 @@ class ReviewHandlerTest {
 		ReviewHandler object12 = new ReviewHandler();
 		object12.loadReviews(path+"Movie-reviews/pos", 2);
 	}
+
 	/**
+	 * Test method for {@link main.java.project2.ReviewHandler#readReview(java.lang.String, int)}.
 	 * 
+	 * Reads a single review file and returns it as a MovieReview object.
+	 * 
+     * @param reviewFilePath 0_9 path to 0_9 .txt file containing a review.
+     * @param realClass The real class entered by the user.
+     * 
 	 */
+	
 	@Test
-	void testReadReview() {
+	public void testReadReview() {
 		ReviewHandler object1 = new ReviewHandler();
 		try {
 			object1.readReview(path+"positive-words.txt", 0);
@@ -105,12 +196,14 @@ class ReviewHandlerTest {
 			e.printStackTrace();
 		}
 	}
+
 	/**
+	 * Test method for {@link main.java.project2.ReviewHandler#classifyReview(main.java.project2.MovieReview)}.
 	 * 
+	 * pos_word And neg_word string are the words from the data file.
 	 */
 	@Test
-	void testClassifyReview() {
-		
+	public void testClassifyReview() {
 		String pos_word = "achievement";
 		String neg_word = "addicted";
 		
@@ -193,41 +286,46 @@ class ReviewHandlerTest {
 		ReviewHandler object18 = new ReviewHandler();
 		object18.classifyReview(object626);
 	}
+
 	/**
-	 * 
+	 * Test method for {@link main.java.project2.ReviewHandler#deleteReview(int)}.
 	 */
 	@Test
-	void testDeleteReview() {
+	public void testDeleteReview() {
 		
 		int review_id = 0 ;
 		
 		ReviewHandler object1 = new ReviewHandler();
 		
 		object1.deleteReview(review_id);
+		
 	}
+
 	/**
-	 * 
+	 * Test method for {@link main.java.project2.ReviewHandler#saveDB()}.
 	 */
 	@Test
-	void testSaveDB() {
+	public void testSaveDB() {
 		
 		ReviewHandler object1 = new ReviewHandler();
+		
 		
 		try {
 			object1.saveDB();
-		} catch (IOException e) {
+		} 
+		catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 	}
+
 	/**
-	 * 
+	 * Test method for {@link main.java.project2.ReviewHandler#loadDB()}.
 	 */
 	@Test
-	void testLoadDB() {
-		
+	public void testLoadDB() {
 		ReviewHandler object1 = new ReviewHandler();
-		
 		try {
 			object1.loadDB();
 		} catch (IOException e) {
@@ -235,26 +333,36 @@ class ReviewHandlerTest {
 			e.printStackTrace();
 		}
 	}
+
 	/**
-	 * 
+	 * Test method for {@link main.java.project2.ReviewHandler#searchById(int)}.
 	 */
 	@Test
-	void testSearchById() {
+	public void testSearchById() {
 		int review_id = 0 ;
 		
 		ReviewHandler object1 = new ReviewHandler();
 		
 		object1.searchById(review_id);
+		
+    
 	}
+
 	/**
+	 * Test method for {@link main.java.project2.ReviewHandler#searchBySubstring(java.lang.String)}.
 	 * 
+	 * search_review are the 
+	 * 
+	 * 	
+	 * search_review are positive review and negative reviews
 	 */
 	@Test
-	void testSearchBySubstring() {
-		String search_review1 = "recovery";//positive review
-		String search_review2 = "zombie";//negative review
-		String search_review3 = "zippy";//positive review
-		String search_review4 = "idiots";//negative review
+	public void testSearchBySubstring() {
+		
+		String search_review1 = "Fair drama/love story movie that focuses on the lives of blue collar people finding new life thru new love";//positive review
+		String search_review2 = "Story of a man who has unnatural feelings for a pig";//negative review
+		String search_review3 = "Although this was obviously a low-budget production, the performances and the songs in this movie are worth seeing";//positive review
+		String search_review4 = "Weak plot, predictable violence ";//negative review
 		
 		ReviewHandler object1 = new ReviewHandler();
 		object1.searchBySubstring(search_review1);
@@ -267,6 +375,9 @@ class ReviewHandlerTest {
 		
 		ReviewHandler object4 = new ReviewHandler();
 		object4.searchBySubstring(search_review4);
+		
 	}
+	
+	
 
 }
